@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>18+ Age Verification</title>
+  <style>
+    :root {
+      --bg-color: #09090b;
+      --card-bg: #18181b;
+      --accent: #e11d48;
+      --accent-hover: #be123c;
+      --text-main: #fafafa;
+      --text-muted: #a1a1aa;
+      --border: #27272a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    /* Full-Screen Blocking Pop-Up Modal */
+    .modal-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      max-width: 460px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(225, 29, 72, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.06em;
+    }
+
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.85rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem 1.25rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    button:active {
+      transform: scale(0.99);
+    }
+
+    #btn-agree {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    #btn-agree:hover {
+      background-color: var(--accent-hover);
+    }
+
+    #btn-exit {
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    #btn-exit:hover {
+      background-color: #27272a;
+      color: var(--text-main);
+    }
+
+    .status-text {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <span class="badge">18+ ADULTS ONLY</span>
+    <h1 id="modal-title">Age Verification Required</h1>
+    <p>
+      This website contains adult-oriented material intended strictly for individuals 
+      18 years of age or older (or the age of majority in your jurisdiction). 
+      By clicking <strong>Agree</strong>, you confirm that you are of legal age and consent to proceed.
+    </p>
+    <div class="btn-group">
+      <button id="btn-agree">I Agree — This Is an Adult Site</button>
+      <button id="btn-exit">I Do Not Agree — Exit</button>
+    </div>
+    <div id="redirect-status" class="status-text">Redirecting to visitor questionnaire…</div>
+  </div>
+
+  <script>
+    const GOOGLE_FORM_URL = "https://forms.gle/nWmhu8MpyLcvGDAr5";
+    const EXIT_URL = "https://www.google.com";
+
+    const agreeBtn = document.getElementById("btn-agree");
+    const exitBtn = document.getElementById("btn-exit");
+    const statusText = document.getElementById("redirect-status");
+
+    agreeBtn.addEventListener("click", () => {
+      agreeBtn.disabled = true;
+      agreeBtn.textContent = "Verified — Opening Form…";
+      statusText.style.display = "block";
+      window.location.href = GOOGLE_FORM_URL;
+    });
+
+    exitBtn.addEventListener("click", () => {
+      window.location.href = EXIT_URL;
+    });
+  </script>
+
+</body>
+</html>
